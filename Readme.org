@@ -1,5 +1,7 @@
 #+title: Readme RustyChat
 
+* Table of contents :toc:
+
 * About
 RustyChat is an Irc client written in rust.
 It is the first project i have written in rust, and it is supposed to be a learning experience.
