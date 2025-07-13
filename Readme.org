@@ -166,36 +166,46 @@ If it isnt found in the location default settings will be used.
 
 The config.toml can contain
 
+#+begin_src toml
 [config]
 nick = ""
+#+end_src
 
 its a global starting nick.
 
+#+begin_src toml
 [theme]
 fg = [149, 148, 32]
 bg = [64, 55, 82]
 notification = [204, 5, 5]
 highlight = [4, 163, 22]
 text = [255, 255, 255]
+#+end_src
 
 Rbg values for different theme elements.
 
+#+begin_src toml
 [twitch]
 nick = ""
 oauth = ""
+#+end_src
 
 Twitch connection info
 
+#+begin_src toml
 [autojoin.1]
 ip = ""
 nick = ""
 channels = [""]
+#+end_src
 
 Autojoin server. the channels is a list so it can be expanded to multiple like so:
 ["chan1", "chan2"]
 There can also be multiple autojoins just increment the number:
 
+#+begin_src toml
 [autojoin.2]
 ip = ""
 nick = ""
 channels = [""]
+#+end_src
