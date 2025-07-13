@@ -1,0 +1,170 @@
+#+title: Readme RustyChat
+
+* About
+RustyChat is an Irc client written in rust.
+It is the first project i have written in rust, and it is supposed to be a learning experience.
+The client is using Ratatui as the tui frontend.
+
+It also implements async server connections using tokio.
+
+It connects as default to port 6667, i havent tested on other ports, and likely wouldnt work on any other.
+
+I have implemented the most common Irc commands and server responses, far from all of the commands are represented.
+
+It is possible to connect to twitch chat through the client, it requires Twitch nickname and oauth set in the config.
+
+This is the first pass of the application, The code need to be cleaned up and needs comments, as right now some of it is
+a bit messy.
+
+Below the application is explained, otherwise there is an in app help list.
+
+* Features
+
+** Async connection
+It handles multiple connections to different Irc servers.
+When a new server is join a "Status" channel is added to the channel overview.
+Then as long as Status or a different channel on that server is the active element, all commands
+are sent to the respective server.
+The Status gets all the join/part/quit and commands that are not chat messages.
+If a command doesnt work, check the Status, thats where the error message is stored.
+
+** Split view
+There is a /split function to split your view vertically to have 2 chats open at the same time.
+It doesnt have to be on the same server.
+There is only one prompt so when in split view use tab to change the active "window".
+[[/Images/split.png]]
+
+** Channel/server list
+There is a channel/server list to see what is connect to or joined.
+It is indicated with a ">".
+[[/Images/channels.png]]
+
+** In prompt styling
+When you are writing a message in the prompt you kan style the message with: Bold/Italic/underline and color,
+and it shows directly in the prompt and of course in the chat window when sent.
+Input mode is indicated top right of prompt
+[[/Images/input.png]]
+
+** Private message buffer
+If you recieve a private message you will see the message in your current active channel, as well as a new channel with the nickname of the sender
+in the channel overview. Sending messages in the buffer is as all other channels.
+It is also possible to send /msg nick message to start a private conversation yourself.
+
+** Theming using Rgb
+The config file has theme options for text, foreground, background and more.
+
+** Autoconnect
+It is also possible in the config to set servers and channels to autoconnect on application launch.
+
+** Twitch Chat connection
+If Twitch nick and oauth token is present in the config, you can connect to the twitch chat servers and join channels to chat.
+
+** Individual server Nicks
+Each server Stores a Nick name. If you have login with a specific nick you can add the nick to autoconnect or change it in system Status before connecting to a server.
+
+** User list
+The application also tracks each channels users. So far it is only showing modes of users if they are present in the server response when joining a channel.
+
+** Visual Notifications
+The channel list displays a notification "!" when something have happened and it is not the current active channel.
+It doesnt show notifications for "Status", as it is usually generic server responses.
+[[/Images/notification.png]]
+
+** List command
+If you use the List command (Or Alis in libera chat), a popup with show with the list response, and it can be scrolled using PGup and PGdown.
+[[/Images/list.png]]
+
+** Menu
+In the top bar there is a Menu for Help, User and channel overview
+[[/Images/menu.png]]
+
+** Chat/prompt history
+Use PgUp and Pgdown to scroll chat history, 500 lines are saved.
+Use Up and Down to scroll prompt history.
+
+* Commands/Keybinds
+
+** /connect
+/connect Ip/servername
+It defaults to port 6667 so it is not needed in the connect
+
+** /twitch_connect
+/twitch_connect
+remember to supply twich nick and oauth in config
+
+** /join
+/join \#channel
+To join a channel on a server
+
+** /part
+/part \#channel
+to leave channel
+
+** /disconnect
+/disconnect Ip/servername
+To disconnect from a server, use the name in channel overvie if in doubt.
+
+** /list (/alis)
+/list
+As regular irc, it differs from server to server so check how it works.
+
+** /swap
+/swap 'number'
+Swap to another channel view based on the number in channel overview
+
+** /split
+/split 'number'-'number'
+Split view 2 channels based on numbers in channel overview
+
+** /msg
+/msg nick 'message'
+To privately message a user in current server, it automatically open a private chat buffer.
+
+** /quit
+/quit
+to quit the application
+
+** /nick
+/nick 'nickname'
+To send a nick change to current server.
+
+* Config
+
+The application defaults too look for a config in /home_dir/.config/rustychat/config.toml
+If it isnt found in the location default settings will be used.
+
+The config.toml can contain
+
+[config]
+nick = ""
+
+its a global starting nick.
+
+[theme]
+fg = [149, 148, 32]
+bg = [64, 55, 82]
+notification = [204, 5, 5]
+highlight = [4, 163, 22]
+text = [255, 255, 255]
+
+Rbg values for different theme elements.
+
+[twitch]
+nick = ""
+oauth = ""
+
+Twitch connection info
+
+[autojoin.1]
+ip = ""
+nick = ""
+channels = [""]
+
+Autojoin server. the channels is a list so it can be expanded to multiple like so:
+["chan1", "chan2"]
+There can also be multiple autojoins just increment the number:
+
+[autojoin.2]
+ip = ""
+nick = ""
+channels = [""]

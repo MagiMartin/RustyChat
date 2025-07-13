@@ -1,0 +1,19 @@
+[config]
+nick = ""
+
+[theme]
+fg = [149, 148, 32]
+bg = [64, 55, 82]
+notification = [204, 5, 5]
+highlight = [4, 163, 22]
+text = [255, 255, 255]
+
+[twitch]
+nick = ""
+oauth = ""
+
+[autojoin.1]
+ip = ""
+nick = ""
+channels = [""]
+
