@@ -1,6 +1,35 @@
 #+title: Readme RustyChat
 
 * Table of contents :toc:
+- [[#about][About]]
+- [[#features][Features]]
+  - [[#async-connection][Async connection]]
+  - [[#split-view][Split view]]
+  - [[#channelserver-list][Channel/server list]]
+  - [[#in-prompt-styling][In prompt styling]]
+  - [[#private-message-buffer][Private message buffer]]
+  - [[#theming-using-rgb][Theming using Rgb]]
+  - [[#autoconnect][Autoconnect]]
+  - [[#twitch-chat-connection][Twitch Chat connection]]
+  - [[#individual-server-nicks][Individual server Nicks]]
+  - [[#user-list][User list]]
+  - [[#visual-notifications][Visual Notifications]]
+  - [[#list-command][List command]]
+  - [[#menu][Menu]]
+  - [[#chatprompt-history][Chat/prompt history]]
+- [[#commandskeybinds][Commands/Keybinds]]
+  - [[#connect][/connect]]
+  - [[#twitch_connect][/twitch_connect]]
+  - [[#join][/join]]
+  - [[#part][/part]]
+  - [[#disconnect][/disconnect]]
+  - [[#list-alis][/list (/alis)]]
+  - [[#swap][/swap]]
+  - [[#split][/split]]
+  - [[#msg][/msg]]
+  - [[#quit][/quit]]
+  - [[#nick][/nick]]
+- [[#config][Config]]
 
 * About
 RustyChat is an Irc client written in rust.
