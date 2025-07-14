@@ -159,6 +159,11 @@ to quit the application
 /nick 'nickname'
 To send a nick change to current server.
 
+** /'command'
+/'command'
+If a prompt starts with / it acts as sending a command to the irc server.
+All IRC commands not covered here, can be send using / in front.
+
 * Config
 
 The application defaults too look for a config in /home_dir/.config/rustychat/config.toml
