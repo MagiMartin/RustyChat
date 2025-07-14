@@ -29,6 +29,7 @@
   - [[#msg][/msg]]
   - [[#quit][/quit]]
   - [[#nick][/nick]]
+  - [[#command][/command]]
 - [[#config][Config]]
 
 * About
